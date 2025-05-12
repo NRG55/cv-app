@@ -1,11 +1,12 @@
 import Navbar from "./Navbar";
-import { navbarSections } from "../../data";
+import PersonalInfoForm from "./PesonalInfoForm";
 
-export default function Editor() { 
+export default function Editor({ data }) { 
     return (
         <div className="cv-editor">
             CV Editor
-            <Navbar sections={navbarSections}></Navbar>
+            <Navbar data={data}></Navbar>
+            <PersonalInfoForm />
         </div>        
     );
 }
