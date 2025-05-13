@@ -1,15 +1,18 @@
-export default function Navbar({ data }) {  
+export default function Navbar({ data, setSection }) {  
     const sections = Object.keys(data);
-      
+
     return (
         <nav>
             <ul>
                {sections.map((element) => 
-                <li key={element}>                 
-                    <button> {element}</button>
+                <li 
+                    key={element}
+                    onClick={() => setSection(element)}
+                >                 
+                    <button>{element}</button>
                 </li>
                )}
-            </ul>           
+            </ul>                  
         </nav>
     );
 }
