@@ -1,12 +1,11 @@
 import Navbar from "./Navbar";
-import PersonalInfoForm from "./PesonalInfoForm";
+import PersonalInfo from "./PesonalInfo";
 
-export default function Editor({ data }) { 
+export default function Editor({ data, setData }) { 
     return (
-        <div className="cv-editor">
-            CV Editor
+        <div className="cv-editor">          
             <Navbar data={data}></Navbar>
-            <PersonalInfoForm />
+            <PersonalInfo data={data} setData={setData}/>
         </div>        
     );
 }

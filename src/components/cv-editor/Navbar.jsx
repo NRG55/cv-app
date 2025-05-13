@@ -1,10 +1,12 @@
-export default function Navbar({ data }) {    
+export default function Navbar({ data }) {  
+    const sections = Object.keys(data);
+      
     return (
         <nav>
             <ul>
-               {data.map((element) => 
-                <li key={element.id}>                 
-                    <button> {element.title}</button>
+               {sections.map((element) => 
+                <li key={element}>                 
+                    <button> {element}</button>
                 </li>
                )}
             </ul>           
