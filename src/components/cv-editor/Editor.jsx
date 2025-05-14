@@ -12,6 +12,7 @@ export default function Editor({ data, setData }) {
     return (
         <div className="cv-editor">          
             <Navbar data={data} setSection={setSection}/>
+            
             {section === "personalInfo" && 
             <PersonalInfo data={data} setData={setData}/>
             } 
