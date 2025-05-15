@@ -8,38 +8,41 @@ export default function Education({ data, setData }) {
 
         setData({
                  ...data,
-                education: [...data.education, 
-                                {
-                                id: newId,
-                                schoolName: "",            
-                                degree: "",
-                                startDate: "",
-                                endDate: "",
-                                location: ""
-                                }
-                            ]            
-                });      
+                education: {...data.education, 
+                                      [newId]: {                              
+                                                schoolName: "",            
+                                                degree: "",
+                                                startDate: "",
+                                                endDate: "",
+                                                location: ""
+                                                }
+                            }            
+                });              
     };
 
-    const handleEducationChange = (formId, event) => {
-        const { name, value } = event.target;
-        const dataCopy = data;
-        const form = dataCopy.education.find((form) => form.id === formId);
-        
-        form[name] = value;
+    const deleteEducationForm = (formId) => {
+       delete data.education[formId];
 
-        setData({...dataCopy});                   
+       setData({...data});
+    };
+
+    const handleEducationChange = (formId, event) => {       
+        setData({...data, 
+               education: {...data.education, 
+                                    [formId]: {...data.education[formId], 
+                                                    [event.target.name]: event.target.value}}});                        
     };
  
     return (
         <Section title="Education">
-            {data.education.map((element) => {              
+            {Object.keys(data.education).map((key) => {                
                 return (
                     <EducationForm
-                        key={"education-form-" + element.id}                        
-                        formId={element.id}
-                        data={data}
-                        handleChange={handleEducationChange}                      
+                        key={"education-" + key}
+                        data={data}                        
+                        formId={key}                      
+                        handleChange={handleEducationChange} 
+                        handleDelete={deleteEducationForm}                      
                     />
                 )
             })}
@@ -53,9 +56,7 @@ export default function Education({ data, setData }) {
     );
 }
 
-function EducationForm({formId, data, handleChange}) {
-    const educationInfo = data.education.find(form => form.id === formId);    
-
+function EducationForm({formId, data, handleChange, handleDelete}) {   
     return (
         <Fragment>
             <div className="education-form">           
@@ -66,7 +67,7 @@ function EducationForm({formId, data, handleChange}) {
                         name="schoolName"
                         id="school-name"
                         onChange={(event) => handleChange(formId, event)}
-                        value={educationInfo.schoolName}                                                                  
+                        value={data.education[formId].schoolName}                                                                  
                     />
                 </div>          
                 <div>
@@ -76,7 +77,7 @@ function EducationForm({formId, data, handleChange}) {
                         name="degree"
                         id="degree"
                         onChange={(event) => handleChange(formId, event)}
-                        value={educationInfo.degree}                 
+                        value={data.education[formId].degree}                 
                     />
                 </div>
                 <div className="school-dates">
@@ -87,7 +88,7 @@ function EducationForm({formId, data, handleChange}) {
                             name="startDate"
                             id="school-start-date"
                             onChange={(event) => handleChange(formId, event)}
-                            value={educationInfo.startDate}                                       
+                            value={data.education[formId].startDate}                                    
                         />
                     </div>
                     <div>
@@ -97,7 +98,7 @@ function EducationForm({formId, data, handleChange}) {
                             name="endDate"
                             id="school-end-date"
                             onChange={(event) => handleChange(formId, event)}
-                            value={educationInfo.endDate}                      
+                            value={data.education[formId].endDate}                       
                         />
                     </div>
                 </div>
@@ -108,10 +109,16 @@ function EducationForm({formId, data, handleChange}) {
                         name="location"
                         id="school-location"
                         onChange={(event) => handleChange(formId, event)}
-                        value={educationInfo.location}               
+                        value={data.education[formId].location}                
                     />
                 </div>
             </div>
+            <button
+                onClick={() => handleDelete(formId)}
+            >
+                Delete
+            </button>
+            <button>Cancel</button>
         </Fragment>
     );
 }

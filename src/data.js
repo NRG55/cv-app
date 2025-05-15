@@ -6,7 +6,7 @@ export const data = {
         phoneNumber: "",
         location: "",
     },
-    education: [],
+    education: {},
     experience: [],
     projects: [],
     skills: []    

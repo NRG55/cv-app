@@ -1,6 +1,6 @@
-export default function Navbar({ data, setSection }) {  
-    const sections = Object.keys(data);
-
+export default function Navbar({ data, setSection }) {
+    const sections = Object.keys(data); 
+      
     return (
         <nav>
             <ul>

@@ -14,18 +14,21 @@ export default function Preview({ data }) {
 
             <section className="education-preview">
                 <h2>Education</h2>
-                {data.education.map((element) => {                  
+                {Object.entries(data.education).map((element ) => {
+                    const id = element[0];
+                    const educationData = element[1];
+
                     return (
-                        <div className="school-preview" key={"school" + element.id}>
+                        <div className="school-preview" key={"school" + id}>
                             <div>
-                                <h3>{element.schoolName}</h3>
+                                <h3>{educationData.schoolName}</h3>
                                 <p>
-                                    {element.startDate} - {element.endDate}
+                                    {educationData.startDate} - {educationData.endDate}
                                 </p>
                             </div>
-                            <p>{element.degree}</p>
+                            <p>{educationData.degree}</p>
                             <p className="school-location">
-                                {element.location}
+                                {educationData.location}
                             </p>
                             
                         </div>
