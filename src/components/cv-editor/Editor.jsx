@@ -1,33 +1,28 @@
-import { useState } from 'react';
-import PersonalInfo from "./PesonalInfo";
-import Education from "./Education";
-import Experience from './Experience';
-import Projects from './Projects';
-import Skills from './Skills';
+import { useState } from "react";
+import Section from "./Section";
 import Navbar from "./Navbar";
+import PersonalInfoForm from "./forms/PesonalInfoForm";
+import FormsList from "./FormsList";
 
-export default function Editor({ data, setData }) {
-    const [section, setSection] = useState("personalInfo"); 
+export default function Editor({ data, setData }) { 
+    const [section, setSection] = useState("personalInfo");
+    const [formInfo, setFormInfo] = useState({id: null, isOpen: false, isNew: false})
 
     return (
-        <div className="cv-editor">          
+        <div className="cv-editor"> 
             <Navbar data={data} setSection={setSection}/>
-            
+
             {section === "personalInfo" && 
-            <PersonalInfo data={data} setData={setData}/>
-            } 
+            <Section title="Personal Information" content={<PersonalInfoForm data={data} setData={setData} />} /> 
+            }
             {section === "education" && 
-            <Education data={data} setData={setData}/>
-            }
-            {section === "experience" && 
-            <Experience data={data} setData={setData}/>
-            }
-            {section === "projects" && 
-            <Projects data={data} setData={setData}/>
+            <Section title="Education" content={<FormsList data={data} 
+                                                           setData={setData} 
+                                                           section={section} 
+                                                           formInfo={formInfo}
+                                                           setFormInfo={setFormInfo}
+                                                           />} />
             } 
-            {section === "skills" && 
-            <Skills data={data} setData={setData}/>
-            }    
         </div>        
     );
 }
