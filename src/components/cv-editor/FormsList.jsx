@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { v4 as uuidv4} from "uuid";
 import { initialSectionData } from "../../data";
 import EducationForm from "./forms/EducationForm";
+import ExperienceForm from "./forms/ExperienceForm";
 
-export default function FormsList({ section, data, setData, formInfo, setFormInfo }) {     
-    const createForm = () => {
+export default function FormsList({ section, data, setData, activeForm, setActiveForm}) { 
+    const [isNewForm, setIsNewForm] = useState(false)   
+
+    const handleFormCreate = () => {
         const newId = uuidv4();
-        
+      
         setData({
                  ...data,
                  [section]: {...data[section], 
@@ -13,44 +17,57 @@ export default function FormsList({ section, data, setData, formInfo, setFormInf
                             }            
                 });
         
-        setFormInfo({id: newId, isOpen: true, isNew: true}) 
-        console.log(formInfo)                            
+        setIsNewForm(true);
+        setActiveForm({...activeForm, [section]: newId})                                          
     };
 
-    const deleteForm = (formId) => {        
+    const handleFormDelete = (formId) => {        
         const newData = data;
 
         delete newData[section][formId];
+        
         setData({...newData});
-        setFormInfo({...formInfo, isOpen: false, isNew: false});      
+        setIsNewForm(false);
+        setActiveForm({...activeForm, [section]: null});      
     };
 
-    const handleFormChange = (formId, event) => {       
+    const handleFormChange = (formId, event) => {           
         setData({...data, 
                 [section]: {...data[section], 
                                     [formId]: {...data[section][formId], 
-                                                    [event.target.name]: event.target.value}}});                        
+                                                    [event.target.name]: event.target.value}}});                                                                    
     };
     
-    const saveForm = () => {
-        setFormInfo({...formInfo, isOpen: false, isNew: false});        
+    const handleFormSave = () => {
+        setIsNewForm(false);
+        setActiveForm({...activeForm, [section]: null});        
     };
 
-    const editForm = (formId) => { 
-        setFormInfo({...formInfo, id: formId, isOpen: true});       
-    }
-
-    if (formInfo.isOpen) {            
+    const handleFormEdit = (formId) => {         
+        setActiveForm({...activeForm, [section]: formId});
+    };
+  
+    if (activeForm[section]) {                  
         return (
             <>
                 {section === "education" && (<EducationForm
-                                                 formId={formInfo.id}                                               
+                                                 formId={activeForm[section]}                                               
                                                  data={data} 
-                                                 isNewForm={formInfo.isNew}                                                                 
+                                                 isNewForm={isNewForm}                                                                 
                                                  handleChange={handleFormChange} 
-                                                 handleDelete={deleteForm}
-                                                 saveForm={saveForm}        
-                                            />)}
+                                                 handleDelete={handleFormDelete}
+                                                 handleSave={handleFormSave}        
+                                            />)
+                }
+                {section === "experience" && (<ExperienceForm
+                                                 formId={activeForm[section]}                                               
+                                                 data={data} 
+                                                 isNewForm={isNewForm}                                                                 
+                                                 handleChange={handleFormChange} 
+                                                 handleDelete={handleFormDelete}
+                                                 handleSave={handleFormSave}        
+                                            />)
+                }
             </>
         )
     };
@@ -66,25 +83,33 @@ export default function FormsList({ section, data, setData, formInfo, setFormInf
                             formId={formId}                         
                             formData={formData} 
                             section={section}
-                            editForm={editForm} 
-                            deleteForm={deleteForm} />                 
+                            handleEdit={handleFormEdit} 
+                            handleDelete={handleFormDelete} />                 
                 )
             })}
             <button
-                className="add-education-button" 
-                onClick={createForm}               
+                className={"add-" + section + "-button"} 
+                onClick={handleFormCreate}               
             >
-                Add Education
+                + Add {section}
             </button> 
         </>
     )
 }
 
-const Form = ({ formId, formData, section, editForm }) => {
+const Form = ({ formId, formData, section, handleEdit }) => {
     if (section === "education") {
         return (
-            <button onClick={() => editForm(formId)}>
+            <button onClick={() => handleEdit(formId)}>
                 {formData.schoolName}
+            </button>
+        )
+    };
+
+    if (section === "experience") {
+        return (
+            <button onClick={() => handleEdit(formId)}>
+                {formData.companyName}
             </button>
         )
     };
