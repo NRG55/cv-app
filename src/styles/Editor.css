@@ -9,24 +9,8 @@
 @font-face {        
     font-family: "Noto Sans";
     font-style: normal;
-    font-weight: 400;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/NotoSans-Regular.ttf")
-      format("woff2");
-}
-
-@font-face {        
-    font-family: "Noto Sans";
-    font-style: normal;
     font-weight: 500;
     src: url("/home/dmitry/repos/cv-app/src/styles/fonts/NotoSans-Medium.ttf")
-      format("woff2");
-}
-
-@font-face {        
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 500;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/Inter_18pt-Light.ttf")
       format("woff2");
 }
 
@@ -256,7 +240,9 @@ nav button {
 
     .edit-form {       
         grid-template-columns: 1fr;       
-    }    
+    }  
+
+    
 }
 
 

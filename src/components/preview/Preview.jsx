@@ -14,7 +14,6 @@ export default function Preview({ data }) {
                         {data.personalInfo.location}
                     </p>
                 </section>
-
                 <section className="education-preview">
                     <h2>EDUCATION</h2>
                     <hr />
@@ -30,7 +29,7 @@ export default function Preview({ data }) {
                                         {educationData.startDate} - {educationData.endDate}
                                     </p>
                                 </div>
-                                <p><i>{educationData.degree}</i></p>
+                                <h4><i>{educationData.degree}</i></h4>
                                 <p className="school-location">
                                     {educationData.location}
                                 </p>                            
@@ -52,7 +51,7 @@ export default function Preview({ data }) {
                                         {experienceData.startDate} - {experienceData.endDate}
                                     </p>
                                 </div>
-                                <p><i>{experienceData.jobTitle}</i></p>
+                                <h4><i>{experienceData.jobTitle}</i></h4>
                                 <p className="job-location">
                                     {experienceData.location}
                                 </p> 
@@ -62,6 +61,26 @@ export default function Preview({ data }) {
                             </div>
                         );
                     })}
+                </section>
+                <section className="projects-preview">
+                    <h2>MY PROJECTS</h2><hr/>
+                    {Object.entries(data.projects).map((element ) => {
+                        const id = element[0];
+                        const projectsData = element[1];
+
+                        return (
+                            <div className="projects-preview" key={"project" + id}>                            
+                                <h3>{projectsData.projectName}</h3>                             
+                                <p className="job-description">
+                                    {projectsData.description}
+                                </p> 
+                            </div>                          
+                        );
+                    })}
+                </section>
+                <section className="skills-preview"> 
+                    <h2>TECHNICAL SKILLS</h2><hr/>                  
+                    <p>{data.skills}</p>
                 </section>
             </div>
         </div>

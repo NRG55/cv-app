@@ -1,37 +1,64 @@
-.preview {
+@font-face {        
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/Inter_18pt-Light.ttf")
+      format("woff2");
+}
+
+@font-face {        
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/Inter_24pt-ExtraLight.ttf")
+      format("woff2");
+}
+
+.preview { 
     display: grid;
-    justify-content: center;
+    justify-content: center; 
     height: 100%;
     font-family: "Inter";
+    text-align: justify;
 }
 
 hr {   
     border: solid 1px #dddedf;
+    margin-bottom: 1rem;
 }
 
 .personal-info-preview {
     text-align: center;
-    margin-bottom: .6rem;
+    font-size: .8rem;
+    margin-bottom: 1.5rem;
 
     h1 {
-        margin-bottom: .5rem;
-        font-size: 1.8rem;
+        margin-bottom: .4rem;
+        font-size: 1.5rem;
         font-weight: bold;
     }
 }
 
 .education-preview,
-.experience-preview {
-    margin-bottom: 1rem;
+.experience-preview,
+.projects-preview,
+.skills-preview {
+    margin-bottom: 1.5rem;
 
     h2 {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: bold;
     }
 
     h3 {
-        font-size: 1rem;
+        font-size: .9rem;
         font-weight: bold;
+    }
+    
+    h4 {
+        font-size: 1rem;
+        font-weight: 300;
+        margin-bottom: .5rem;
     } 
     
     p {
@@ -39,18 +66,27 @@ hr {
     }
 }
 
+.school-preview,
+.job-preview {
+    margin-bottom: 1rem;
+}
+
 .school-preview > div,
 .job-preview > div {
     display: flex;
-    justify-content: space-between;
-    margin-top: .5rem;
+    justify-content: space-between;  
 
     p {
-        font-size: .8rem;        
+        font-size: .8rem; 
+        font-weight: 500;       
     }    
 }
 
-.school-preview > p {
+.job-preview p,
+.school-preview p,
+.projects-preview p,
+.skills-preview p {
+    font-size: .8rem;
     font-weight: 300;
     margin-bottom: .3rem;
 }
@@ -58,7 +94,6 @@ hr {
 .job-preview p:nth-of-type(2) {
     margin-bottom: .5rem;
 }
-
 
 .a4-preview-page {    
     width: 180mm;
@@ -82,5 +117,9 @@ hr {
     .a4-preview-page {
         margin-top: 2rem;
         scale: 1;        
-    }   
+    }
+    
+    textarea {
+        min-height: 14rem;
+    }
 }

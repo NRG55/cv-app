@@ -3,6 +3,7 @@ import { v4 as uuidv4} from "uuid";
 import { initialSectionData } from "../../data";
 import EducationForm from "./forms/EducationForm";
 import ExperienceForm from "./forms/ExperienceForm";
+import ProjectsForm from "./forms/ProjectsForm";
 
 export default function FormsList({ section, data, setData, activeForm, setActiveForm}) { 
     const [isNewForm, setIsNewForm] = useState(false)   
@@ -38,7 +39,9 @@ export default function FormsList({ section, data, setData, activeForm, setActiv
                                                     [event.target.name]: event.target.value}}});                                                                    
     };
     
-    const handleFormSave = () => {
+    const handleFormSave = (e) => { 
+        e.preventDefault();
+             
         setIsNewForm(false);
         setActiveForm({...activeForm, [section]: null});        
     };
@@ -68,6 +71,15 @@ export default function FormsList({ section, data, setData, activeForm, setActiv
                                                  handleSave={handleFormSave}        
                                             />)
                 }
+                {section === "projects" && (<ProjectsForm
+                                                 formId={activeForm[section]}                                               
+                                                 data={data} 
+                                                 isNewForm={isNewForm}                                                                 
+                                                 handleChange={handleFormChange} 
+                                                 handleDelete={handleFormDelete}
+                                                 handleSave={handleFormSave}        
+                                            />)
+                }               
             </>
         )
     };
@@ -77,7 +89,7 @@ export default function FormsList({ section, data, setData, activeForm, setActiv
             {Object.entries(data[section]).map((element) => {
                 const formId = element[0];
                 const formData = element[1]; 
-                            
+                          
                 return ( <Form 
                             key={"form-" + formId}
                             formId={formId}                         
@@ -88,7 +100,7 @@ export default function FormsList({ section, data, setData, activeForm, setActiv
                 )
             })}
             <button
-                className={"add-" + section + "-button"} 
+                className={"add-button"} 
                 onClick={handleFormCreate}               
             >
                 + Add {section}
@@ -97,20 +109,43 @@ export default function FormsList({ section, data, setData, activeForm, setActiv
     )
 }
 
-const Form = ({ formId, formData, section, handleEdit }) => {
+const Form = ({ formId, formData, section, handleEdit, handleDelete }) => {
     if (section === "education") {
         return (
-            <button onClick={() => handleEdit(formId)}>
-                {formData.schoolName}
-            </button>
+            <div className="minimized-form">
+                <button className="form-button" onClick={() => handleEdit(formId)}>
+                    {formData.schoolName}
+                </button>
+                <button className="small-delete-button" onClick={() => handleDelete(formId)}>
+                    <img src="./src/icons/delete.svg"></img>
+                </button>
+            </div>
         )
     };
 
     if (section === "experience") {
         return (
-            <button onClick={() => handleEdit(formId)}>
-                {formData.companyName}
-            </button>
+            <div className="minimized-form">
+                <button  className="form-button" onClick={() => handleEdit(formId)}>
+                    {formData.companyName}
+                </button>
+                <button className="small-delete-button" onClick={() => handleDelete(formId)}>
+                    <img src="./src/icons/delete.svg"></img>
+                </button>
+            </div>
+        )
+    };
+
+    if (section === "projects") {
+        return (
+            <div className="minimized-form">
+                <button  className="form-button" onClick={() => handleEdit(formId)}>
+                    {formData.projectName}
+                </button>
+                <button className="small-delete-button" onClick={() => handleDelete(formId)}>
+                    <img src="./src/icons/delete.svg"></img>
+                </button>
+            </div>
         )
     };
 }
