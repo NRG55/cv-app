@@ -1,16 +1,14 @@
 @font-face {        
-    font-family: "Inter";
-    font-style: normal;
+    font-family: "Inter";  
     font-weight: 500;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/Inter_18pt-Light.ttf")
+    src: url("/home/dmitry/repos/cv-app/src/assets/fonts/Inter_18pt-Light.ttf")
       format("woff2");
 }
 
 @font-face {        
-    font-family: "Inter";
-    font-style: normal;
+    font-family: "Inter";  
     font-weight: 300;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/Inter_24pt-ExtraLight.ttf")
+    src: url("/home/dmitry/repos/cv-app/src/assets/fonts/Inter_24pt-ExtraLight.ttf")
       format("woff2");
 }
 
@@ -117,9 +115,5 @@ hr {
     .a4-preview-page {
         margin-top: 2rem;
         scale: 1;        
-    }
-    
-    textarea {
-        min-height: 14rem;
-    }
+    }  
 }

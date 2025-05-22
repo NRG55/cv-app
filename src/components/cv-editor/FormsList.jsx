@@ -117,7 +117,7 @@ const Form = ({ formId, formData, section, handleEdit, handleDelete }) => {
                     {formData.schoolName}
                 </button>
                 <button className="small-delete-button" onClick={() => handleDelete(formId)}>
-                    <img src="./src/icons/delete.svg"></img>
+                    <img src="/icons/delete.svg"></img>
                 </button>
             </div>
         )
@@ -130,7 +130,7 @@ const Form = ({ formId, formData, section, handleEdit, handleDelete }) => {
                     {formData.companyName}
                 </button>
                 <button className="small-delete-button" onClick={() => handleDelete(formId)}>
-                    <img src="./src/icons/delete.svg"></img>
+                    <img src="/icons/delete.svg"></img>
                 </button>
             </div>
         )
@@ -143,7 +143,7 @@ const Form = ({ formId, formData, section, handleEdit, handleDelete }) => {
                     {formData.projectName}
                 </button>
                 <button className="small-delete-button" onClick={() => handleDelete(formId)}>
-                    <img src="./src/icons/delete.svg"></img>
+                    <img src="/icons/delete.svg"></img>
                 </button>
             </div>
         )

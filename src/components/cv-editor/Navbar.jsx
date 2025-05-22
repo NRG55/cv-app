@@ -14,8 +14,8 @@ export default function Navbar({ data, section, setSection }) {
                             onClick={() => handleButtonClick(sectionName)}
                         >
                             {sectionName === section 
-                                ? <img src={`./src/icons/${sectionName}-red.svg`}></img> 
-                                : <img src={`./src/icons/${sectionName}-white.svg`}></img>
+                                ? <img src={`/icons/${sectionName}-red.svg`}></img> 
+                                : <img src={`/icons/${sectionName}-white.svg`}></img>
                             }                          
                         </button>
                     </li>

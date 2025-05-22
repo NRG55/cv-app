@@ -1,21 +1,18 @@
 @font-face {        
-    font-family: "Noto Sans";
-    font-style: normal;
+    font-family: "Noto Sans";   
     font-weight: 300;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/NotoSans-Regular.ttf")
+    src: url("/home/dmitry/repos/cv-app/src/assets/fonts/NotoSans-Regular.ttf")
       format("woff2");
 }
 
 @font-face {        
     font-family: "Noto Sans";
-    font-style: normal;
     font-weight: 500;
-    src: url("/home/dmitry/repos/cv-app/src/styles/fonts/NotoSans-Medium.ttf")
+    src: url("/home/dmitry/repos/cv-app/src/assets/fonts/NotoSans-Medium.ttf")
       format("woff2");
 }
 
-:root {
-    --inputBorderColor: rgb(184, 180, 180);
+:root {   
     --borderRadius: 4px;
     --inputTextColor: rgb(208, 211, 214);
     --inputBackgroundColor: #1e283f;
@@ -240,9 +237,11 @@ nav button {
 
     .edit-form {       
         grid-template-columns: 1fr;       
-    }  
-
-    
+    } 
+     
+    textarea {
+        min-height: 15rem;
+    }    
 }
 
 
